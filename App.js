@@ -8,11 +8,12 @@ import TestComponent from './app/screens/TestComponent';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import AccountScreen from './app/screens/AccountScreen'
+import ListingScreen from './app/screens/ListingScreen';
 
 export default function App() {
   return (
   <>
-    <AccountScreen />
+    <ListingScreen />
   </>
   );
 }

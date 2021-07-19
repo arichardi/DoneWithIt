@@ -1,20 +1,26 @@
 import React from 'react'
-import { StyleSheet, View, TextInput } from 'react-native'
+import { StyleSheet, View, TextInput, TouchableWithoutFeedback, Modal } from 'react-native'
 
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import colors from '../config/colors'
 import defaultStyle from '../config/styles'
 import AppText from './AppText'
+import AppScreen from './AppScreen'
 
 const AppPicker = ({icon, placeholder, ...otherProps}) => {
+
+    const [modalVisible, setModalVisible] = useState(false)
+
     return (
+        <>
+        <TouchableWithoutFeedback onPress={ () => setModalVisible(true)}>
         <View style={styles.container}>
             { icon && 
                 <MaterialCommunityIcons 
-                    name={icon}
-                    size={20}
-                    colors={colors.medium}
-                    style={styles.icon} />}
+                name={icon}
+                size={20}
+                colors={colors.medium}
+                style={styles.icon} />}
             <AppText style={styles.text} >{placeholder}</AppText>
                 <MaterialCommunityIcons 
                     name='chevron-down'
@@ -22,6 +28,16 @@ const AppPicker = ({icon, placeholder, ...otherProps}) => {
                     colors={colors.medium}
                     />
         </View>
+        </TouchableWithoutFeedback>
+        <Modal 
+            visible={modalVisible}
+            animationType='slide'        
+        >
+            <AppScreen>
+            <Button title='close' onPress={ () => setModalVisible(false)} />
+            </AppScreen>
+        </Modal>
+        </>
     )
 }
 

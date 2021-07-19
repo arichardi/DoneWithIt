@@ -7,11 +7,12 @@ import MessageScreen from './app/screens/MessageScreen';
 import TestComponent from './app/screens/TestComponent';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
+import AccountScreen from './app/screens/AccountScreen'
 
 export default function App() {
   return (
   <>
-    <MessageScreen />
+    <AccountScreen />
   </>
   );
 }

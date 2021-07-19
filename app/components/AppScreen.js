@@ -13,6 +13,7 @@ export default function AppScreen({children}) {
 
 const styles = StyleSheet.create({
     screen: {
-        paddingTop: Constants.statusBarHeight
+        paddingTop: Constants.statusBarHeight,
+        flex: 1,
     }
 })

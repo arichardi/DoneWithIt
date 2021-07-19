@@ -29,7 +29,11 @@ const initialMessages = [
 
 const MessageScreen = (props) => {
 
+    //variables
     const [messages, setMessages] = useState(initialMessages)
+    const [refreshing, setrefreshing] = useState(false)
+
+    //functions
     const handleDelete = (message) => {
         //delete the messages
         const newMessages = messages.filter( m => m.id !== message.id)
@@ -43,6 +47,17 @@ const MessageScreen = (props) => {
             data={messages}
             keyExtractor={ message => message.id.toString() }
             ItemSeparatorComponent={ListItemSeparator}
+            refreshing={refreshing}
+            onRefresh={ () => {
+                setMessages(
+                    [{
+                        id: 2,
+                        title: 't2',
+                        description: 'D2',
+                        image: require('../assets/mosh.jpg')
+                    }]
+                )
+            }}
             renderItem={ ({ item }) => 
             <ListItem 
             title={item.title} 

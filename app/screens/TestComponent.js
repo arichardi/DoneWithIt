@@ -1,42 +1,32 @@
-import React, {useEffect, useState} from 'react'
-import { Button, Image, StyleSheet } from 'react-native'
-import * as ImagePicker from 'expo-image-picker'
+import React, { useState} from 'react'
+import {StyleSheet } from 'react-native'
 
 import AppScreen from '../components/AppScreen'
+import ImageInputList from '../components/ImageInputList'
 import ImageInput from '../components/ImageInput'
 
 const TestComponent = () => {
 
 
-    const [imageUri, setImageUri] = useState()
+    const [imageUris, setImageUris] = useState([])
 
-    const requestPermition = async () => {
-        const result = await ImagePicker.requestMediaLibraryPermissionsAsync()
-        if(!result.granted)
-            alert('you need to eneble permision to access the library')
+    const handleAdd = (uri) => {
+        setImageUris([...imageUris, uri])
     }
 
-    useEffect( () => {
-        requestPermition();
-    },[])
-
-
-
-    const selectImage = async () => {
-        try {
-            const result = await ImagePicker.launchImageLibraryAsync();
-            if (!result.cancelled)
-                setImageUri(result.uri);
-        } catch (error) {
-            console.log('Error reading the image', error)
-        }
+    const handleRemove = uri => {
+        setImageUris(imageUris.filter( imageUri => imageUri !== uri ))
     }
 
-    
-
-    return (
+     return (
         <AppScreen>
-            <ImageInput onChangeImage={ uri => setImageUri(uri)} imageUri={imageUri} />
+            <ImageInputList
+                imageUris={imageUris}
+                onAddImage={handleAdd}
+                onRemoveImage={handleRemove}
+
+             />
+             {console.log(imageUris)}
         </AppScreen>
     )
 }

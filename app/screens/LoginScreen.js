@@ -23,7 +23,7 @@ const LoginScreen = () => {
                 onSubmit={ values => console.log(values)}
                 validationSchema={validationSchema}
             >
-                                <AppFormField
+                <AppFormField
                     name='email'
                     placeholder='email'
                     icon='email'

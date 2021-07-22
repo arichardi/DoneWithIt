@@ -5,7 +5,7 @@ import ErrorMessage from '../components/ErrorMessage'
 import ImageInputList from '../components/ImageInputList'
 
 
-const ImageInputList = ({name}) => {
+const FormImagePicker = ({name}) => {
 
     //variables
     const {errors, setFieldValue, touched, values} = useFormikContext();
@@ -35,4 +35,4 @@ return (
 );
 }
 
-export default ImageInputList
+export default FormImagePicker

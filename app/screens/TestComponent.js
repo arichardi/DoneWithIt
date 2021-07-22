@@ -1,41 +1,58 @@
-import React, { useState} from 'react'
-import {StyleSheet } from 'react-native'
+import React from 'react'
+import {  Button, Text } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import AppScreen from '../components/AppScreen'
-import ImageInputList from '../components/ImageInputList'
-import ImageInput from '../components/ImageInput'
+import AuthNavigator from '../navigation/AuthNavigator'
 
-const TestComponent = () => {
+const Tweets = ({navigation}) => (
+    <AppScreen>
+        <Text>Tweets</Text>
+        <Button title='Tweets' onPress={ () => navigation.navigate('TweetDetails', { id: 1})} />
+    </AppScreen>
+)
 
+const TweetDetails = ({navigation, route}) => (
+    <AppScreen>
+        <Text>Tweet Details {route.params.id} </Text>
+        <Button title='TweetDetails' onPress={ () => navigation.navigate('Tweets')}  />
+    </AppScreen>
+)
 
-    const [imageUris, setImageUris] = useState([])
+const Account = () => (
+    <AppScreen>
+        <Text>Account Text</Text>
+    </AppScreen>
+)
 
-    const handleAdd = (uri) => {
-        setImageUris([...imageUris, uri])
-    }
-
-    const handleRemove = uri => {
-        setImageUris(imageUris.filter( imageUri => imageUri !== uri ))
-    }
-
-     return (
-        <AppScreen>
-            <ImageInputList
-                imageUris={imageUris}
-                onAddImage={handleAdd}
-                onRemoveImage={handleRemove}
-
-             />
-             {console.log(imageUris)}
-        </AppScreen>
+const Stack = createStackNavigator();
+const StackNavigator = () => {
+    return (
+    <Stack.Navigator>
+        <Stack.Screen name='Tweet' component={Tweets} />
+        <Stack.Screen name='TweetDetails' component={TweetDetails} options={ ({route}) => ({title: route.params.id})}/>
+    </Stack.Navigator>
     )
 }
 
-export default TestComponent
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => {
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name='Feed' component={Tweets} />
+            <Tab.Screen name='Account' component={Account} />
+        </Tab.Navigator>
+    )
+}
 
-const styles = StyleSheet.create({
-    image: {
-        width: 200,
-        height: 200,
-    },
-})
+const TestComponent = () => {
+return (
+    <NavigationContainer>
+        <AuthNavigator />
+    </NavigationContainer>
+)
+}
+
+export default TestComponent

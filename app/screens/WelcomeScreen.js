@@ -5,7 +5,7 @@ import logo from '../assets/logo-red.png'
 import AppButton from '../components/AppButton'
 
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
     return (
         <ImageBackground
         source={imgBack}
@@ -20,7 +20,7 @@ const WelcomeScreen = () => {
                 <Text style={styles.tagline}>Sell what you don't need</Text>
             </View>
             <View style={styles.buttonContainer} >
-                <AppButton title='Login' onPress={ () => console.log('taped')} />  
+                <AppButton title='Login' onPress={ () => navigation.navigate('Login') } />  
                 <AppButton title='Register' color='secondary' onPress={ () => console.log('taped')} /> 
             </View>
         </ImageBackground>

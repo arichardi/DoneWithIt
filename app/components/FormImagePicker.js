@@ -16,7 +16,7 @@ const FormImagePicker = ({name}) => {
     }
 
     const handleRemove = uri => {
-        setFieldValue(values[name].filter( imageUri => imageUri !== uri ))
+        setFieldValue(name, values[name].filter( imageUri => imageUri != uri ))
     }
 
 return (
